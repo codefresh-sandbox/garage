@@ -20,7 +20,7 @@ garage:
 
   # Default to 3 replicas, see the replication_mode section at
   # https://garagehq.deuxfleurs.fr/documentation/reference-manual/configuration/#replication-mode
-  replicationMode: "3"
+  replicationMode: "1"
 
   # zstd compression level of stored blocks
   # https://garagehq.deuxfleurs.fr/documentation/reference-manual/configuration/#compression-level
@@ -105,7 +105,7 @@ deployment:
   # Switchable to DaemonSet
   kind: StatefulSet
   # Number of StatefulSet replicas/garage nodes to start
-  replicaCount: 3
+  replicaCount: 1
 
 image:
   repository: dxflrs/amd64_garage
@@ -158,6 +158,8 @@ service:
       port: 3900
     web:
       port: 3902
+  admin:
+    port: 3903
     # NOTE: the admin API is excluded for now as it is not consistent across nodes
 
 ingress:

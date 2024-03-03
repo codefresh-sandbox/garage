@@ -56,6 +56,13 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+          - name: GARAGE_ADMIN_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: garage-codefresh-admin
+                key: token
+                optional: false
           ports:
             - containerPort: 3900
               name: s3-api
